@@ -124,6 +124,7 @@ document.getElementById('btnPlay').addEventListener('click', function () {
                         break;
                 }
                 answerField.innerText = answerPhrase;
+                document.querySelector('#answerFieldNumber').classList.toggle('hidden');
                 gameRun = false;
             } else {
                 maxValue = answerNumber - 1; 
@@ -149,6 +150,7 @@ document.getElementById('btnPlay').addEventListener('click', function () {
                         break;
                 }
                 answerField.innerText = answerNumber >= 0 ? numberToText().length < 20 && answerNumber >= 0 ? `Вы загадали число ${numberToText()}?` : `Вы загадали число ${answerNumber}?` : numberToText().length < 20 ? `Вы загадали число минус ${numberToText()}?` : `Вы загадали число ${answerNumber}?`;
+                answerFieldNumber.innerText = answerNumber;
             }
         }
     })
@@ -175,6 +177,7 @@ document.getElementById('btnPlay').addEventListener('click', function () {
                         break;
                 }
                 answerField.innerText = answerPhrase;
+                document.querySelector('#answerFieldNumber').classList.toggle('hidden');
                 gameRun = false;
             } else {
                 minValue = answerNumber + 1; 
@@ -204,12 +207,13 @@ document.getElementById('btnPlay').addEventListener('click', function () {
                         break;
                 }
                 answerField.innerText = answerNumber >= 0 ? numberToText().length < 20 && answerNumber >= 0 ? `Вы загадали число ${numberToText()}?` : `Вы загадали число ${answerNumber}?` : numberToText().length < 20 ? `Вы загадали число минус ${numberToText()}?` : `Вы загадали число ${answerNumber}?`;
+                answerFieldNumber.innerText = answerNumber;
             }
         }
     })
 
     document.getElementById('btnEqual').addEventListener('click', function () { 
-        document.querySelector('#answerFieldNumber').classList.toggle('hidden');
+       
         if (gameRun) {
             const phraseRandom = Math.round(Math.random() * 3);
             switch (phraseRandom) {
@@ -230,7 +234,7 @@ document.getElementById('btnPlay').addEventListener('click', function () {
                     break;
             }
             answerField.innerText = answerPhrase;
-            
+            document.querySelector('#answerFieldNumber').classList.toggle('hidden');
             gameRun = false;
 
         }
@@ -251,6 +255,7 @@ document.getElementById('btnRetry').addEventListener('click', function () {
     document.querySelector('#btnProceed').classList.toggle('hidden');           
     document.querySelector('#formInputMin').value = '';
     document.querySelector('#formInputMax').value = '';
+    document.querySelector('#answerFieldNumber').innerText = '';
     minValue = (minValue < -999) ? minValue = -999 : (minValue > 999) ? minValue = 999 : minValue;
     maxValue = (maxValue > 999) ? maxValue = 999 : (maxValue < -999) ? maxValue = -999 : maxValue;
     if (maxValue < minValue) {
@@ -270,6 +275,7 @@ document.getElementById('btnRetry').addEventListener('click', function () {
         document.querySelector('.form-inline').classList.add('hidden');             
         document.querySelector('.guessNumber').classList.remove('hidden');          
         document.querySelector('#btnProceed').classList.add('hidden');             
-        document.querySelector('#btnPlay').classList.remove('hidden');              
+        document.querySelector('#btnPlay').classList.remove('hidden');  
+        answerFieldNumber.innerText = answerNumber;            
     })
 })
